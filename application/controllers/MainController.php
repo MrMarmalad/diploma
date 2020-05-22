@@ -12,7 +12,7 @@ class MainController extends Controller
 
   public function indexAction()
   {
-    
+    //$this->model->test();
     $this->view->render('index view');
   }
 

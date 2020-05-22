@@ -1,16 +1,19 @@
 <?php
 
 namespace application\controllers;
+
+
+use application\core\Controller;
 /**
  *
  */
-class AccountController
+class AccountController extends Controller
 {
 
-  function __construct()
-  {
-    // code...
-  }
+  // function __construct()
+  // {
+  //   // code...
+  // }
 
   public function loginAction()
   {

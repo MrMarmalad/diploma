@@ -51,7 +51,6 @@ class Router
       if(class_exists($path))
       {
         $action = $this->params['action'] . 'Action';
-        //echo '<br>'. $action.'<br>';
         if (method_exists($path, $action))
         {
           $controller = new $path($this->params);
