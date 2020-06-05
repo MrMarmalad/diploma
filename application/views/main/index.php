@@ -20,20 +20,7 @@ $menuButtons =
   ]
 ]
 
-  //require_once 'application\views\layouts\defaultMenu.php';
  ?>
- <!--
-   <li class="nav-item">
-     <a class="nav-link" href="#" data-toggle="modal"
-     data-target="#AuthModal">Вход в систему</a>
-   </li>
-   <li class="nav-item">
-     <a class="nav-link" href="#">Обратиться к администратору</a>
-   </li>
-   <li class="nav-item">
-     <a class="nav-link" href="#">О программе</a>
-   </li>
- </ul> -->
 
 
 <div class="modal fade" id="AuthModal" tabindex="-1" role="dialog"
@@ -53,18 +40,12 @@ aria-labelledby="AuthModal" aria-hidden="true">
             <form id="modalFormLogin" action="enter" method="post">
               <div class="form-group">
                 <label for="login">Логин</label>
-                <input type="text" class="form-control" id="login">
-                <small id="loginHelp" class="form-text text-muted">Выдается администратором системы</small>
+                <input type="text" class="form-control" id="login" name="login">
               </div>
               <div class="form-group">
                 <label for="password">Пароль</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="password">
               </div>
-              <!-- <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div> -->
-              <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
             </form>
           </div>
         </div>
@@ -159,8 +140,8 @@ aria-labelledby="AuthModal" aria-hidden="true">
 </nav> -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col md-12">
+		<div class="col md-10 ml-1 mr-1">
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>

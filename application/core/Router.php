@@ -53,11 +53,13 @@ class Router
         $action = $this->params['action'] . 'Action';
         if (method_exists($path, $action))
         {
+
           $controller = new $path($this->params);
           $controller->$action();
         }
         else
         {
+          //debug([$path, $action]);
           View::errorCode(404);
         }
       }

@@ -8,22 +8,53 @@ namespace application\lib;
 class Security
 {
   private $route;
+  //private $salt;
 
-  public function getPassword()
-  {
 
-  }
-
-  public function setPassword($password, $salt)
-  {
-    $conf = require_once 'application/config/config.php';
-    return hash('sha3-512', $password . $salt . $conf['key']);
-  }
-
-  public function __construct($route)
+  public function __construct($route="")
   {
     $this->route=$route;
   }
+
+  public function setHash($str, $salt=NULL)
+  {
+    //var_dump(['str' => $str, 'salt' => $salt]);
+    $conf = require_once 'application/config/config.php';
+    //echo hash('sha256', $str . $salt . $conf['key']).'<br>';
+    //hash('sha256', $str . $salt . $conf['key']);
+    return hash('sha256', $str . $salt . $conf['key']);
+  }
+
+  // public function getHash($password, $salt)
+  // {
+  //   $conf = require_once 'application/config/config.php';
+  //   return hash('sha3-256', $password . $salt . $conf['key']);
+  // }
+
+  public function setLogPass($log, $pass, $salt=NULL)
+  {
+    if (!isset($salt)){
+      $salt = date("Y-m-d H:i:s");      // 2001-03-10 17:16:18 (формат MySQL DATETIME)
+    }
+    $hashLogin = $this->setHash($log, $salt);
+    $hashLogin = $this->setHash($log, $salt);
+    $hashPassword = $this->setHash($pass, $salt);
+    return ['login' => $hashLogin, 'password' => $hashPassword, 'salt' => $salt];
+  }
+
+  public function setSession($role, $statement=[])
+  {
+    session_start();
+    foreach ($statement as $key => $value) {
+      $_SESSION[$key] = $value;
+
+    }
+    session_write_close();
+    var_dump($_SESSION);
+  }
+
+
+
 
   public function access($role='guest', $key=NULL, $acl=NULL)
   {

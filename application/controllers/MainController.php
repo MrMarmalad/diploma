@@ -5,7 +5,6 @@ namespace application\controllers;
  *
  */
  use application\core\Controller;
- use application\lib\Security;
 
 class MainController extends Controller
 {
@@ -26,7 +25,21 @@ class MainController extends Controller
 
   public function enterAction()
   {
-    var_dump($this->model->enter($login, $password));
+    //var_dump($_POST);
+    
+    $status = $this->model->enter($_POST['login'], $_POST['password']);
+    switch ($status) {
+      case 'register_admin':
+        //header('Location: configuration/registerAdmin');
+        $this->redirect('configuration/registerAdmin');
+        break;
+      case 'success':
+        echo $status;
+        break;
+      case 'not_found':
+        echo $status;
+        break;
+    }
   }
   public function registerAction()
   {

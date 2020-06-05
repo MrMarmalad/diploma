@@ -14,6 +14,16 @@ return [
         'action' => 'configure',
       ],
 
+      'configuration/registerAdmin' => [
+        'controller' => 'configuration',
+        'action' => 'registerAdmin',
+      ],
+
+      'configuration/addAdmin' => [
+        'controller' => 'configuration',
+        'action' => 'addAdmin',
+      ],
+
       'about' => [
         'controller' => 'main',
         'action' => 'about'],

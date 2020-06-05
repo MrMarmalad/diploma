@@ -30,27 +30,43 @@ class View
       if (isset($custom_scripts)){
         $custom_scripts = $this->custom_scripts + $custom_scripts;
       }
-
-      if (isset($menu))
-      {
-        $pathToMenu = 'application/views/menu/' . $menu . '.php';
-        //echo $pathToMenu;
-        if (file_exists($pathToMenu))
-        {
-
-          require $pathToMenu;
-        }
-      }
-
       else {
         $custom_scripts = $this->custom_scripts;
       }
 
+      if (isset($menu)) {
+        $pathToButtons = 'application/views/'.$this->path .'Menu.php';
+        $menuButtons = $this->getButtons($path);
+        //echo "to buttons ". $pathToButtons;
+        // if (file_exists($pathToButtons)) {
+        // require_once $pathToButtons;
+        // }
+        $pathToMenu = 'application/views/layouts/'.$menu.'.php';
+        //echo "to menu ". $pathToMenu;
+        if (file_exists($pathToMenu)) {
+          require_once $pathToMenu;
+        }
+      }
 			require $path;
+      //echo '<br>'.$path;
 			$content = ob_get_clean();
 			require 'application/views/layouts/'.$this->layout.'.php';
 		}
   }
+
+    protected function getButtons($path)
+    {
+      ob_start();
+      require_once $path;
+      if (isset($menuButtons)) {
+        ob_clean();
+        return $menuButtons;
+      }
+      else {
+        ob_clean();
+        return FALSE;
+      }
+    }
 
   public function redirect($url)
   {

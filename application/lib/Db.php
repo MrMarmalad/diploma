@@ -8,7 +8,7 @@ namespace application\lib;
  use PDO;
 class Db
 {
-  protected $db;
+  public $db;
 
   function __construct()
   {
@@ -32,17 +32,18 @@ class Db
     }
 
     $stmt->execute();
-    var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
+    //var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
     //var_dump(empty($stmt->fetchAll(PDO::FETCH_ASSOC)));
+    //debug($this->db->errorInfo());
     return $stmt;
   }
 
-  public function row ($sql, $params=[])
+  public function row ($sql, $params=[], $flag=PDO::FETCH_ASSOC)
   {
     $result = $this->query($sql, $params);
     //debug($result. 'assad');
     if (($result != FALSE)){
-      return $result->fetchAll(PDO::FETCH_ASSOC);
+      return $result->fetchAll($flag);
     }
 
   }
